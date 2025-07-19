@@ -21,7 +21,7 @@
 你可以通过克隆此仓库到 GPU 服务器来开始学习：
 
 ```shell
-git clone https://github.com/DjangoPeng/LLM-quickstart-mathings.git
+git clone https://github.com/wengad82/LLM-quickstart-mathings.git
 ```
 
 ## 搭建开发环境
@@ -36,7 +36,7 @@ git clone https://github.com/DjangoPeng/LLM-quickstart-mathings.git
 - Python 环境管理 [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/)
 - Python 交互式开发环境 [Jupyter Lab](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html)
 
-**
+
 ```
 本项目实际的硬件环境RTX 5090 24G显存。 主要注意的是有ubuntu有自己专用的显存驱动。
 
@@ -62,11 +62,11 @@ Sat Jul 19 15:54:58 2025
 |    0   N/A  N/A            2989      C   /python3.12                           N/A      |
 +-----------------------------------------------------------------------------------------+
 
-
+Anaconda3-2024.10-1-Linux-x86_64.sh 
 python 3.12
 WLS 2  Ubuntu 24.04
 ```
-**
+
 
 **以下是详细的安装指导（以 Ubuntu 22.04 操作系统为例）**：
 
@@ -137,10 +137,10 @@ rm -rf ~/miniconda3/miniconda.sh
 安装完成后，建议新建一个 Python 虚拟环境，命名为 `peft`。
 
 ```shell
-conda create -n peft python=3.10
+conda create -n aiup python=3.12
 
 # 激活环境
-conda activate peft 
+conda activate aiup 
 ```
 
 之后每次使用需要激活此环境。
@@ -202,3 +202,35 @@ set OPENAI_API_KEY=你的-api-key
 ```
 
 请确保将`'你的-api-key'`替换为你的实际OpenAI API密钥。
+
+
+
+# 推送GIT
+## 生成密钥
+```
+ssh-keygen -t ed25519 -C "149726627@qq.com"
+```
+
+## 设置GITHUB密钥
+将公钥（默认路径 ~/.ssh/id_ed25519.pub）添加到 GitHub 账号的 SSH 密钥设置 中（路径：GitHub 个人设置 → SSH and GPG keys → New SSH key）。
+
+## 验证SSH连接
+```
+ssh -T git@github.com
+```
+
+## 配置仓库远程地址为SSH格式：
+进入到本地仓库的目录
+```
+git remote set-url origin git@github.com:username/repo.git
+```
+其中的username/repo.git   需要根据自己的实际情况修改，具体可以通过如下方式获取：
+
+**
+如何确认正确的 SSH 地址？
+若不确定仓库的 SSH 地址，可通过以下方式获取：
+打开 GitHub 上的目标仓库页面；
+点击右上角的 Code 按钮，在弹出的菜单中切换到 SSH 标签；
+复制显示的 SSH 地址（格式为 git@github.com:username/repo.git），直接替换命令中的地址即可。
+这样修改后，Git 就能通过 SSH 密钥正常连接到你的 GitHub 仓库，避免因密码 / Token 中的特殊字符导致认证问题。
+**
